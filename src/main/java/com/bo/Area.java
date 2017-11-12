@@ -10,7 +10,7 @@ import java.io.Serializable;
  * created on 10/20/17
  */
 @Entity
-@Table(name="area")
+@Table(name="tb_area")
 public class Area implements Serializable {
     private static final long serialVersionUID = -1388912437788530149L;
     @Id

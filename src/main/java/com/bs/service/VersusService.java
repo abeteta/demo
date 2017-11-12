@@ -2,7 +2,6 @@ package com.bs.service;
 
 import com.bo.Versus;
 import com.dto.VersusDTO;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 /**
  * @author Alexander Beteta

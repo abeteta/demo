@@ -6,7 +6,6 @@ import com.bs.service.UsuarioService;
 import com.dto.EmailPasswordDTO;
 import com.dto.UsuarioDTO;
 import com.repository.UsuarioRepository;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

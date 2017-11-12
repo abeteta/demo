@@ -28,17 +28,17 @@ public class Usuarios implements Serializable{
     private String email;
     private String password;
     private Integer id_usertype;
-    private Integer punteo;
+    private Integer experiencia;
 
     public Usuarios () {super();}
 
-    public Usuarios(String nombre, String apellido, String email, String password, Integer id_usertype, Integer punteo) {
+    public Usuarios(String nombre, String apellido, String email, String password, Integer id_usertype, Integer experiencia) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.password = password;
         this.id_usertype = id_usertype;
-        this.punteo = punteo;
+        this.experiencia = experiencia;
     }
 
     public Integer getId_user() {
@@ -89,12 +89,12 @@ public class Usuarios implements Serializable{
         this.id_usertype = id_usertype;
     }
 
-    public Integer getPunteo() {
-        return punteo;
+    public Integer getExperiencia() {
+        return experiencia;
     }
 
-    public void setPunteo(Integer punteo) {
-        this.punteo = punteo;
+    public void setExperiencia(Integer experiencia) {
+        this.experiencia = experiencia;
     }
 
 }
