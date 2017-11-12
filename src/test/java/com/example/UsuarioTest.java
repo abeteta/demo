@@ -4,6 +4,7 @@ import com.Application;
 import com.bo.Usuarios;
 import com.bs.service.UsuarioService;
 import com.dto.UsuarioDTO;
+import com.dto.UsuarioPasswordDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,10 @@ public class UsuarioTest {
 
     @Test
     public void usuarioRegistrado() {
-        String email = "alex@prueba.com";
-        String password = "123";
-        Boolean existeUsuario = usuarioService.usuarioRegistrado(email,password);
+        UsuarioPasswordDTO usuarioPasswordDTO = new UsuarioPasswordDTO();
+        usuarioPasswordDTO.setEmail("alex@prueba.com");
+        usuarioPasswordDTO.setPassword("123");
+        Boolean existeUsuario = usuarioService.usuarioRegistrado(usuarioPasswordDTO);
         assertNotNull(existeUsuario);
     }
 

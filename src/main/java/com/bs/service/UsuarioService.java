@@ -2,6 +2,7 @@ package com.bs.service;
 
 import com.bo.Usuarios;
 import com.dto.UsuarioDTO;
+import com.dto.UsuarioPasswordDTO;
 
 /**
  * @author Alexander Beteta
@@ -12,6 +13,6 @@ import com.dto.UsuarioDTO;
 public interface UsuarioService {
     Usuarios findOne(Integer id_user);
     UsuarioDTO findUsuario(UsuarioDTO usuario);
-    Boolean usuarioRegistrado(String email, String password);
+    Boolean usuarioRegistrado(UsuarioPasswordDTO usuarioPasswordDTO);
     Integer findIdUsuario(String email, String password);
 }

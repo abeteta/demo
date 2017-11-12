@@ -5,11 +5,14 @@ import com.bo.Usuarios;
 import com.bs.service.UsuarioService;
 import com.dto.EmailPasswordDTO;
 import com.dto.UsuarioDTO;
+import com.dto.UsuarioPasswordDTO;
 import com.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import javax.print.DocFlavor;
 
 /**
  * @author Alexander Beteta
@@ -43,7 +46,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Transactional
-    public Boolean usuarioRegistrado(String email, String password) {
+    public Boolean usuarioRegistrado(UsuarioPasswordDTO usuarioPasswordDTO) {
+
+        String email = usuarioPasswordDTO.getEmail();
+        String password = usuarioPasswordDTO.getPassword();
 
         Integer idUsuario = usuarioRepository.findIdUsuario(email, password);
         Boolean existeUsuario = (idUsuario!=null) ? true : false;

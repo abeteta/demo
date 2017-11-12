@@ -96,5 +96,4 @@ public class Usuarios implements Serializable{
     public void setExperiencia(Integer experiencia) {
         this.experiencia = experiencia;
     }
-
 }
