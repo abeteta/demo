@@ -6,6 +6,7 @@ import com.bo.Usuarios;
 import com.bs.service.UsuarioService;
 import com.dto.UsuarioDTO;
 import com.dto.UsuarioPasswordDTO;
+import com.dto.UsuarioRegistradoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,12 +44,9 @@ public class UsuarioController {
     }*/
 
     @RequestMapping(method = RequestMethod.POST, value = "/usuarioRegistrado")
-    public ResponseEntity<Boolean> usuarioRegistrado(@RequestBody UsuarioPasswordDTO usuarioPasswordDTO) {
+    public ResponseEntity<UsuarioRegistradoDTO> usuarioRegistrado(@RequestBody UsuarioPasswordDTO usuarioPasswordDTO) {
         return new ResponseEntity<>(usuarioService.usuarioRegistrado(usuarioPasswordDTO), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/idUsuario")
-    public ResponseEntity<Integer> datosUsuario(@RequestBody String email, String password) {
-        return new ResponseEntity<>(usuarioService.findIdUsuario(email, password), HttpStatus.OK);
-    }
+
 }

@@ -28,7 +28,7 @@ public class VersusTest {
         VersusDTO request = new VersusDTO();
         VersusDTO response = new VersusDTO();
         request.setEstado_versus(1);
-        request.setId_jugador_primario(7);
+        request.setId_jugador_primario(8);
         response = versusService.buscarQuiz(request);
         assertNotNull(response);
     }

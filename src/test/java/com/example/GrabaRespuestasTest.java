@@ -32,8 +32,8 @@ public class GrabaRespuestasTest {
     public void grabaRespuesta() {
         RespuestaRequestDTO request = new RespuestaRequestDTO();
         RespuestaResponseDTO response = new RespuestaResponseDTO();
-        request.setId_versus(4);
-        request.setId_jugador(8);
+        request.setId_versus(5);
+        request.setId_jugador(7);
         request.setId_curso(1);
         request.setId_pregunta(1);
         request.setId_respuesta(3);

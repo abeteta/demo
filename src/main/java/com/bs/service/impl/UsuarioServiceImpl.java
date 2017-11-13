@@ -6,6 +6,7 @@ import com.bs.service.UsuarioService;
 import com.dto.EmailPasswordDTO;
 import com.dto.UsuarioDTO;
 import com.dto.UsuarioPasswordDTO;
+import com.dto.UsuarioRegistradoDTO;
 import com.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,23 +47,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Transactional
-    public Boolean usuarioRegistrado(UsuarioPasswordDTO usuarioPasswordDTO) {
+    public UsuarioRegistradoDTO usuarioRegistrado(UsuarioPasswordDTO usuarioPasswordDTO) {
 
+        UsuarioRegistradoDTO response = new UsuarioRegistradoDTO();
         String email = usuarioPasswordDTO.getEmail();
         String password = usuarioPasswordDTO.getPassword();
 
         Integer idUsuario = usuarioRepository.findIdUsuario(email, password);
         Boolean existeUsuario = (idUsuario!=null) ? true : false;
 
-        return existeUsuario;
-    }
+        response.setUsuarioRegistrado(existeUsuario);
+        response.setIdUsuario(idUsuario);
 
-    @Transactional
-    public Integer findIdUsuario(String email, String password) {
-
-        Integer idUsuario = usuarioRepository.findIdUsuario(email, password);
-
-        return idUsuario = (idUsuario!=null) ? idUsuario : 0;
+        return response;
     }
 
     @Override
