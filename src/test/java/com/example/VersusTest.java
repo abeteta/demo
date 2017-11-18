@@ -62,10 +62,11 @@ public class VersusTest {
 
     @Test
     public void cambioDeTurno() {
-        Integer idVersus =4;
-        Boolean cambioDeTurno = versusService.cambioDeTurno(idVersus);
+        VersusDTO request = new VersusDTO();
+        request.setId_versus(4);
+        Boolean cambioDeTurno = versusService.cambioDeTurno(request);
         assertNotNull(cambioDeTurno);
-    }
+    }                                                                                               
 
     @Test
     public void finalizaQuiz() {

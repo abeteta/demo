@@ -102,9 +102,10 @@ public class VersusServiceImpl implements VersusService {
     }
 
     @Transactional
-    public Boolean cambioDeTurno(Integer idVersus) {
+    public Boolean cambioDeTurno(VersusDTO request) {
 
         Boolean cambioTurno = null;
+        Integer idVersus = request.getId_versus();
         Versus versus = new Versus();
         try {
             versus = versusRepository.findOne(idVersus);

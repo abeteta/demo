@@ -1,6 +1,8 @@
 package com.bs.controller;
 
+import com.bo.Versus;
 import com.bs.service.VersusService;
+import com.dto.OponenteDTO;
 import com.dto.VersusDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,9 +47,14 @@ public class VersusController {
         return new ResponseEntity<>(versusService.buscarTurnoSegundoJugador(request), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/cambioDeTurno")
-    public ResponseEntity<Boolean> cambioDeTurno(@PathVariable("id_versus") int id) {
+/*    @RequestMapping(method = RequestMethod.GET, value = "/cambioDeTurno")
+    public ResponseEntity<Boolean> cambioDeTurno(int id) {
         return new ResponseEntity<>(versusService.cambioDeTurno(id), HttpStatus.OK);
+    }*/
+
+    @RequestMapping(method = RequestMethod.POST, value = "/cambioDeTurno")
+    public ResponseEntity<Boolean> cambioDeTurno(@RequestBody VersusDTO versus) {
+        return new ResponseEntity<>(versusService.cambioDeTurno(versus), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/finalizaQuiz")

@@ -1,6 +1,7 @@
 package com.bs.service;
 
 import com.bo.Versus;
+import com.dto.OponenteDTO;
 import com.dto.VersusDTO;
 
 /**
@@ -14,6 +15,6 @@ public interface VersusService {
     Integer buscaOponente(VersusDTO versus);
     Boolean buscarTurnoPrimerJugador(VersusDTO versus);
     Boolean buscarTurnoSegundoJugador(VersusDTO versus);
-    Boolean cambioDeTurno(Integer idVersus);
+    Boolean cambioDeTurno(VersusDTO versus);
     Boolean finalizaQuiz(Integer idVersus);
 }
