@@ -4,6 +4,7 @@ package com.bs.controller;
 import com.bo.Pregunta;
 import com.bo.Usuarios;
 import com.bs.service.UsuarioService;
+import com.dto.PerfilDTO;
 import com.dto.UsuarioDTO;
 import com.dto.UsuarioPasswordDTO;
 import com.dto.UsuarioRegistradoDTO;
@@ -34,7 +35,7 @@ public class UsuarioController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/datosUsuario")
-    public ResponseEntity<UsuarioDTO> informacionUsuario(@RequestBody UsuarioDTO request) {
+    public ResponseEntity<PerfilDTO> informacionUsuario(@RequestBody UsuarioDTO request) {
         return new ResponseEntity<>(usuarioService.findUsuario(request), HttpStatus.OK);
     }
 

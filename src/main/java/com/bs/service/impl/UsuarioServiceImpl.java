@@ -3,10 +3,7 @@ package com.bs.service.impl;
 
 import com.bo.Usuarios;
 import com.bs.service.UsuarioService;
-import com.dto.EmailPasswordDTO;
-import com.dto.UsuarioDTO;
-import com.dto.UsuarioPasswordDTO;
-import com.dto.UsuarioRegistradoDTO;
+import com.dto.*;
 import com.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,16 +30,16 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Transactional
-    public UsuarioDTO findUsuario(UsuarioDTO request) {
+    public PerfilDTO findUsuario(UsuarioDTO request) {
 
-        UsuarioDTO response = new UsuarioDTO();
+        PerfilDTO response = new PerfilDTO();
         Usuarios usuario  = usuarioRepository.findOne(request.getId_user());
 
         response.setId_user(usuario.getId_user());
         response.setNombre(usuario.getNombre());
         response.setApellido(usuario.getApellido());
         response.setEmail(usuario.getEmail());
-        response.setId_usertype(usuario.getId_usertype());
+        response.setDesc_usertype("Jugador");
         return response;
     }
 

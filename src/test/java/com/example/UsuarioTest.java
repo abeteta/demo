@@ -3,6 +3,7 @@ package com.example;
 import com.Application;
 import com.bo.Usuarios;
 import com.bs.service.UsuarioService;
+import com.dto.PerfilDTO;
 import com.dto.UsuarioDTO;
 import com.dto.UsuarioPasswordDTO;
 import com.dto.UsuarioRegistradoDTO;
@@ -31,7 +32,7 @@ public class UsuarioTest {
     @Test
     public void findUsuario() {
         UsuarioDTO request = new UsuarioDTO();
-        UsuarioDTO response = new UsuarioDTO();
+        PerfilDTO response = new PerfilDTO();
         request.setId_user(7);
         response = usuarioService.findUsuario(request);
         assertNotNull(response);
