@@ -16,6 +16,7 @@ public class PerfilDTO implements Serializable {
     private String apellido;
     private String email;
     private String desc_usertype;
+    
 
     public PerfilDTO (){super();}
 

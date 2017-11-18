@@ -1,8 +1,6 @@
 package com.bs.controller;
 
-import com.bo.Versus;
 import com.bs.service.VersusService;
-import com.dto.OponenteDTO;
 import com.dto.VersusDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

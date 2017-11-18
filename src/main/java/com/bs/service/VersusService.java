@@ -1,7 +1,5 @@
 package com.bs.service;
 
-import com.bo.Versus;
-import com.dto.OponenteDTO;
 import com.dto.VersusDTO;
 
 /**
