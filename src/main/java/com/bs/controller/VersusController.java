@@ -1,12 +1,15 @@
 package com.bs.controller;
 
 import com.bs.service.VersusService;
+import com.dto.VersusCursosDTO;
 import com.dto.VersusDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Alexander Beteta

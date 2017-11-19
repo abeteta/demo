@@ -4,10 +4,7 @@ package com.bs.controller;
 import com.bo.Pregunta;
 import com.bo.Usuarios;
 import com.bs.service.UsuarioService;
-import com.dto.PerfilDTO;
-import com.dto.UsuarioDTO;
-import com.dto.UsuarioPasswordDTO;
-import com.dto.UsuarioRegistradoDTO;
+import com.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +44,16 @@ public class UsuarioController {
     @RequestMapping(method = RequestMethod.POST, value = "/usuarioRegistrado")
     public ResponseEntity<UsuarioRegistradoDTO> usuarioRegistrado(@RequestBody UsuarioPasswordDTO usuarioPasswordDTO) {
         return new ResponseEntity<>(usuarioService.usuarioRegistrado(usuarioPasswordDTO), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/cambioEstado")
+    public ResponseEntity<Boolean> cambioEstadoUsuario(@RequestBody CambioEstadoUsuarioDTO cambioEstadoUsuarioDTO) {
+        return new ResponseEntity<>(usuarioService.cambiaEstadoUsuario(cambioEstadoUsuarioDTO), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/listadoUsuariosActivos")
+    public ResponseEntity<List<UsuariosActivosDTO>> cambioEstadoUsuario(@RequestBody EstadoUsuarioDTO estadoUsuarioDTO) {
+        return new ResponseEntity<>(usuarioService.listadoUsuariosActivos(estadoUsuarioDTO), HttpStatus.OK);
     }
 
 

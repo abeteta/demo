@@ -1,6 +1,9 @@
 package com.bs.service;
 
+import com.dto.VersusCursosDTO;
 import com.dto.VersusDTO;
+
+import java.util.List;
 
 /**
  * @author Alexander Beteta

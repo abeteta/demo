@@ -3,6 +3,7 @@ package com.repository;
 import com.bo.Pregunta;
 import com.bo.Usuarios;
 import com.dto.UsuarioDTO;
+import com.dto.UsuariosActivosDTO;
 import org.aspectj.apache.bcel.util.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,4 +23,7 @@ public interface UsuarioRepository extends JpaRepository<Usuarios, Integer>{
     @Query("SELECT U.id_user FROM Usuarios U WHERE U.email =:email AND U.password =:password")
     Integer findIdUsuario(@Param("email") String email,
                           @Param("password")String password);
+
+    @Query("SELECT U.id_user FROM Usuarios U WHERE U.estado =:estado")
+    List<Integer> usuariosActivos(@Param("estado") Integer estado);
 }

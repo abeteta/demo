@@ -3,16 +3,15 @@ package com.example;
 import com.Application;
 import com.bo.Usuarios;
 import com.bs.service.UsuarioService;
-import com.dto.PerfilDTO;
-import com.dto.UsuarioDTO;
-import com.dto.UsuarioPasswordDTO;
-import com.dto.UsuarioRegistradoDTO;
+import com.dto.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+
+import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -46,5 +45,23 @@ public class UsuarioTest {
         UsuarioRegistradoDTO existeUsuario = usuarioService.usuarioRegistrado(usuarioPasswordDTO);
         assertNotNull(existeUsuario);
     }
+
+    @Test
+    public void cambioEstadoUsuario() {
+        CambioEstadoUsuarioDTO request = new CambioEstadoUsuarioDTO();
+        request.setId_usuario(7);
+        Boolean cambio = usuarioService.cambiaEstadoUsuario(request);
+        assertNotNull(cambio);
+    }
+
+    @Test
+    public void listaUsuariosActivos() {
+
+        EstadoUsuarioDTO request = new EstadoUsuarioDTO();
+        request.setEstado(1);
+        List<UsuariosActivosDTO> response = usuarioService.listadoUsuariosActivos(request);
+        assertNotNull(response);
+    }
+
 
 }

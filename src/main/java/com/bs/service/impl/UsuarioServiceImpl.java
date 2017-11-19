@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import javax.print.DocFlavor;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Alexander Beteta
@@ -55,6 +57,42 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         response.setUsuarioRegistrado(existeUsuario);
         response.setIdUsuario(idUsuario);
+
+        return response;
+    }
+
+    @Transactional
+    public Boolean cambiaEstadoUsuario(CambioEstadoUsuarioDTO request) {
+
+        Boolean response = false;
+        Usuarios usuario  = usuarioRepository.findOne(request.getId_usuario());
+        if(!usuario.equals(null)){
+            if(usuario.getEstado().equals(1)){
+                usuario.setEstado(0);
+            }  else {
+                usuario.setEstado(1);
+            }
+            usuarioRepository.saveAndFlush(usuario);
+            response = true;
+        }
+        return response;
+    }
+
+    @Transactional
+    public List<UsuariosActivosDTO> listadoUsuariosActivos(EstadoUsuarioDTO request) {
+
+        List<UsuariosActivosDTO> response = new ArrayList<UsuariosActivosDTO>();
+        List<Integer> listids = usuarioRepository.usuariosActivos(request.getEstado());
+
+        for(Integer list: listids){
+            UsuariosActivosDTO usuariosActivosDTO = new UsuariosActivosDTO();
+            Usuarios usuario = usuarioRepository.findOne(list.intValue());
+            if(!usuario.equals(null)){
+                usuariosActivosDTO.setId_usuario(usuario.getId_user());
+                usuariosActivosDTO.setNombre(usuario.getNombre());
+                response.add(usuariosActivosDTO);
+            }
+        }
 
         return response;
     }

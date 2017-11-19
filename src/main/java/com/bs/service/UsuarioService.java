@@ -1,10 +1,9 @@
 package com.bs.service;
 
 import com.bo.Usuarios;
-import com.dto.PerfilDTO;
-import com.dto.UsuarioDTO;
-import com.dto.UsuarioPasswordDTO;
-import com.dto.UsuarioRegistradoDTO;
+import com.dto.*;
+
+import java.util.List;
 
 /**
  * @author Alexander Beteta
@@ -16,4 +15,6 @@ public interface UsuarioService {
     Usuarios findOne(Integer id_user);
     PerfilDTO findUsuario(UsuarioDTO usuario);
     UsuarioRegistradoDTO usuarioRegistrado(UsuarioPasswordDTO usuarioPasswordDTO);
+    Boolean cambiaEstadoUsuario(CambioEstadoUsuarioDTO cambioEstadoUsuarioDTO);
+    List<UsuariosActivosDTO> listadoUsuariosActivos(EstadoUsuarioDTO estadoUsuarioDTO);
 }
