@@ -28,4 +28,8 @@ public interface VersusRepository extends JpaRepository<Versus, Integer> {
     Boolean findTurnoSegundoJugador(@Param("idVersus") Integer idVersus,
                                  @Param("idSegundoJugador") Integer idSegundoJugador);
 
+    @Query("SELECT V.id_versus FROM Versus  V WHERE V.estado_versus =:estadoVersus AND V.id_jugador_secundario=:idSegundoJugador")
+    Integer esperandoOponente(@Param("estadoVersus") Integer estadoVersus,
+                                    @Param("idSegundoJugador") Integer idSegundoJugador);
+
 }

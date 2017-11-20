@@ -3,6 +3,7 @@ package com.bs.service.impl;
 import com.bo.Usuarios;
 import com.bo.Versus;
 import com.bs.service.VersusService;
+import com.dto.EsperandoOponenteDTO;
 import com.dto.UsuarioDTO;
 import com.dto.VersusDTO;
 import com.repository.UsuarioRepository;
@@ -28,6 +29,28 @@ public class VersusServiceImpl implements VersusService {
         this.versusRepository = versusRepository;
     }
 
+    @Transactional
+    public VersusDTO grabaQuiz(VersusDTO request) {
+
+        VersusDTO response = new VersusDTO();
+        Versus newVersus = new Versus();
+        Versus actualVersus = new Versus();
+
+        try {
+                newVersus.setId_jugador_primario(request.getId_jugador_primario());
+                newVersus.setTurno_jugador_primario(true);
+                newVersus.setId_jugador_secundario(request.getId_jugador_secundario());
+                newVersus.setTurno_jugador_secundario(false);
+                newVersus.setEstado_versus(1);
+                versusRepository.saveAndFlush(newVersus);
+                response = new VersusDTO(newVersus);
+          
+
+        } catch (NullPointerException npe) {
+        }
+
+        return response;
+    }
 
     @Transactional
     public VersusDTO buscarQuiz(VersusDTO request) {
@@ -150,6 +173,35 @@ public class VersusServiceImpl implements VersusService {
         } catch (NullPointerException npe) {
         }
         return finQuiz;
+    }
+
+    @Transactional
+    public Boolean esperandoOponente(EsperandoOponenteDTO request) {
+
+        Boolean esperandoOponente = null;
+        Versus versus = new Versus();
+        try {
+            Integer estado = request.getEstado_versus();
+            Integer idJugadorSecundario = request.getId_jugador_secundario();
+            Integer idVersus = versusRepository.esperandoOponente(estado, idJugadorSecundario);
+
+            if(null!=idVersus){
+                versus = versusRepository.findOne(idVersus);
+                if(!versus.equals(null)){
+                    versus.setEstado_versus(2);
+                    esperandoOponente = true;
+                }  else
+                {
+                    esperandoOponente = false;
+                }
+
+            }  else {
+                esperandoOponente = false;
+            }
+
+        } catch (NullPointerException npe) {
+        }
+        return esperandoOponente;
     }
 
 }

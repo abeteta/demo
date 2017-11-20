@@ -1,5 +1,6 @@
 package com.bs.service;
 
+import com.dto.EsperandoOponenteDTO;
 import com.dto.VersusCursosDTO;
 import com.dto.VersusDTO;
 
@@ -12,10 +13,12 @@ import java.util.List;
  * created on 11/4/17
  */
 public interface VersusService {
+    VersusDTO grabaQuiz(VersusDTO versus);
     VersusDTO buscarQuiz(VersusDTO versus);
     Integer buscaOponente(VersusDTO versus);
     Boolean buscarTurnoPrimerJugador(VersusDTO versus);
     Boolean buscarTurnoSegundoJugador(VersusDTO versus);
     Boolean cambioDeTurno(VersusDTO versus);
     Boolean finalizaQuiz(Integer idVersus);
+    Boolean esperandoOponente(EsperandoOponenteDTO oponenteDTO);
 }

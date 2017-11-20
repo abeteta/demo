@@ -2,6 +2,7 @@ package com.example;
 
 import com.Application;
 import com.bs.service.VersusService;
+import com.dto.EsperandoOponenteDTO;
 import com.dto.VersusDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -73,5 +74,14 @@ public class VersusTest {
         Integer idVersus =4;
         Boolean finQuiz = versusService.finalizaQuiz(idVersus);
         assertNotNull(finQuiz);
+    }
+
+    @Test
+    public void espernadoOponente() {
+        EsperandoOponenteDTO request = new EsperandoOponenteDTO();
+        request.setEstado_versus(1);
+        request.setId_jugador_secundario(8);
+        Boolean esperandoOponente = versusService.esperandoOponente(request);
+        assertNotNull(esperandoOponente);
     }
 }
