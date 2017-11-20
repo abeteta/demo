@@ -5,13 +5,18 @@ import com.bo.Versus;
 import com.bs.service.VersusService;
 import com.dto.EsperandoOponenteDTO;
 import com.dto.UsuarioDTO;
+import com.dto.VersusCursosDTO;
 import com.dto.VersusDTO;
 import com.repository.UsuarioRepository;
+import com.repository.VersusCursoRepository;
 import com.repository.VersusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Alexander Beteta
@@ -22,11 +27,19 @@ import org.springframework.util.Assert;
 @Service
 public class VersusServiceImpl implements VersusService {
     private VersusRepository versusRepository;
+    private UsuarioRepository usuarioRepository;
+    private VersusCursoRepository versusCursoRepository;
 
     @Autowired
-    public VersusServiceImpl(VersusRepository versusRepository) {
+    public VersusServiceImpl(VersusRepository versusRepository,
+                             UsuarioRepository usuarioRepository,
+                             VersusCursoRepository versusCursoRepository) {
         Assert.notNull(versusRepository, "versusRepository no debe ser null");
+        Assert.notNull(usuarioRepository, "UsuarioRepository no debe ser null");
+        Assert.notNull(versusCursoRepository, "versusCursoRepository no debe ser null");
         this.versusRepository = versusRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.versusCursoRepository = versusCursoRepository;
     }
 
     @Transactional
@@ -176,9 +189,10 @@ public class VersusServiceImpl implements VersusService {
     }
 
     @Transactional
-    public Boolean esperandoOponente(EsperandoOponenteDTO request) {
+    public List<VersusCursosDTO> esperandoOponente(EsperandoOponenteDTO request) {
 
-        Boolean esperandoOponente = null;
+        List<VersusCursosDTO> listadoVersusCurso = new ArrayList<>();
+        List<Integer> listadoCursosVersus = new ArrayList<Integer>();
         Versus versus = new Versus();
         try {
             Integer estado = request.getEstado_versus();
@@ -189,19 +203,33 @@ public class VersusServiceImpl implements VersusService {
                 versus = versusRepository.findOne(idVersus);
                 if(!versus.equals(null)){
                     versus.setEstado_versus(2);
-                    esperandoOponente = true;
-                }  else
-                {
-                    esperandoOponente = false;
+                    versusRepository.saveAndFlush(versus);
+
+                    Usuarios segundoJugador = usuarioRepository.findOne(idJugadorSecundario);
+                    if(!segundoJugador.equals(null)){
+                        segundoJugador.setEstado(2);
+                        usuarioRepository.saveAndFlush(segundoJugador);
+
+                        listadoCursosVersus = versusCursoRepository.buscaCursosVersus(idVersus);
+
+                        if(listadoCursosVersus.size()>0) {
+                            for (Integer i = 0 ; i<listadoCursosVersus.size() ; i++){
+                                VersusCursosDTO versusCursosDTO = new VersusCursosDTO();
+                                versusCursosDTO.setId_versus(idVersus);
+                                versusCursosDTO.setId_curso(listadoCursosVersus.get(i));
+                                listadoVersusCurso.add(versusCursosDTO);
+                            }
+                        }
+
+                    }
+
                 }
 
-            }  else {
-                esperandoOponente = false;
             }
 
         } catch (NullPointerException npe) {
         }
-        return esperandoOponente;
+        return listadoVersusCurso;
     }
 
 }

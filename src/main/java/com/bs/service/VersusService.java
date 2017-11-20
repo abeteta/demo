@@ -20,5 +20,5 @@ public interface VersusService {
     Boolean buscarTurnoSegundoJugador(VersusDTO versus);
     Boolean cambioDeTurno(VersusDTO versus);
     Boolean finalizaQuiz(Integer idVersus);
-    Boolean esperandoOponente(EsperandoOponenteDTO oponenteDTO);
+    List<VersusCursosDTO> esperandoOponente(EsperandoOponenteDTO oponenteDTO);
 }

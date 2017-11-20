@@ -70,7 +70,7 @@ public class VersusController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/esperandoOponente")
-    public ResponseEntity<Boolean> cambioDeTurno(@RequestBody EsperandoOponenteDTO oponente) {
+    public ResponseEntity<List<VersusCursosDTO>> cambioDeTurno(@RequestBody EsperandoOponenteDTO oponente) {
         return new ResponseEntity<>(versusService.esperandoOponente(oponente), HttpStatus.OK);
     }
 

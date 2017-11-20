@@ -3,12 +3,15 @@ package com.example;
 import com.Application;
 import com.bs.service.VersusService;
 import com.dto.EsperandoOponenteDTO;
+import com.dto.VersusCursosDTO;
 import com.dto.VersusDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -81,7 +84,7 @@ public class VersusTest {
         EsperandoOponenteDTO request = new EsperandoOponenteDTO();
         request.setEstado_versus(1);
         request.setId_jugador_secundario(8);
-        Boolean esperandoOponente = versusService.esperandoOponente(request);
-        assertNotNull(esperandoOponente);
+        List<VersusCursosDTO> listadoCursosVersus = versusService.esperandoOponente(request);
+        assertNotNull(listadoCursosVersus);
     }
 }
